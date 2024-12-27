@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import wave
+import struct
+import scipy.fftpack
+
+# Audio file path
+audio_file = "your_audio_file.wav"
+
+# Read the .wav file
+wave_file = wave.open(audio_file, 'r')
+frame_rate = wave_file.getframerate()
+n_frames = wave_file.getnframes()
+
+# Extract the audio frames
+frames = wave_file.readframes(n_frames)
+wave_file.close()
+
+# Unpack audio data
+audio_data = np.array(struct.unpack('%dh' % (n_frames), frames))
+
+# Perform FFT
+frequencies = np.abs(scipy.fftpack.fft(audio_data))
+
+# Generate frequency axis
+frequency_axis = np.linspace(0.0, frame_rate / 2, len(frequencies) // 2)
+
+# Plot the frequencies
+plt.plot(frequency_axis, frequencies[:len(frequencies) // 2])
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Amplitude')
+plt.title('Sound Frequency Visualizer')
+plt.show()
+
+

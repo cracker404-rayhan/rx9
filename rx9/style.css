@@ -1,0 +1,24 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background-color: #000000;
+}
+
+h1 {
+    font-size: 3.9em;
+    color: #00ff6a;
+}
+
+#gameArea {
+    display: flex;
+    justify-content: center;
+    margin-top: 180px;
+}
+
+#gameCanvas {
+    border: 2px solid rgb(18, 140, 156);
+    background-color: #dfcaca;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
